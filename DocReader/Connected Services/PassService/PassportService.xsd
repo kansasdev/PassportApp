@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/PassportService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/PassportService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ChipData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CAStatus" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Citizenship" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DG14Integrity" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DG1Integrity" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DG2Integrity" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DOB" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocumentNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocumentType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExpirationDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImagePhoto" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="IsDSTrusted" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsJPEG2000" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsPACEReadingProc" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IssuingCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MRZ" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="MessageLOG" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="SODIntegrity" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ChipData" nillable="true" type="tns:ChipData" />
+  <xs:complexType name="PersonalDataVIZ">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Citizenship" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DOBChecksum" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DateOfBirth" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocNumberChecksum" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DocumentNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Errors" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExpirationChecksum" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ExpirationDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Firstname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IssuuingCountry" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Lastname" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sex" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonalDataVIZ" nillable="true" type="tns:PersonalDataVIZ" />
+  <xs:complexType name="KeyData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DOB" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValidityDate" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="KeyData" nillable="true" type="tns:KeyData" />
+</xs:schema>

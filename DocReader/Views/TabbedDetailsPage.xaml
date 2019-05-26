@@ -1,0 +1,184 @@
+﻿<Page
+    x:Class="DocReader.Views.TabbedDetailsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d">
+    <!--<ScrollViewer>-->
+        <Grid
+        x:Name="ContentArea"
+        Margin="{StaticResource SmallLeftRightMargin}">
+            <Pivot
+            x:Name="Items">
+                <Pivot.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock
+                        Text="{Binding}"
+                        Style="{ThemeResource SubtitleTextBlockStyle}" />
+                    </DataTemplate>
+                </Pivot.HeaderTemplate>
+                <PivotItem x:Uid="TabbedDetails_PivotItem1">
+
+                    <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Document number: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <TextBox x:Name="docNumberVIZ"
+                             Grid.Row="0" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" MaxLength="150" Width="150" />
+                        <TextBlock Grid.Row="0" Grid.Column="2" Text="checksum: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <CheckBox x:Name="docNumberCRC" Grid.Row="0" Grid.Column="3" IsEnabled="False" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Date of bith (yyMMdd): " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                            <TextBox Name="DOBVIZ" TextChanged="DOBVIZ_TextChanged"
+                             extensions:TextBoxRegex.Regex="^\d{2}(((0)[0-9])|((1)[0-2]))([0-2][0-9]|(3)[0-1])$" extensions:TextBoxRegex.ValidationMode="Forced"
+                             FontSize="20" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" MaxLength="100" Width="100" />
+
+                            <CheckBox Name="chkbxDOBVIZ" IsEnabled="False" Content="Is valid" IsChecked="{Binding (extensions:TextBoxRegex.IsValid),ElementName=DOBVIZ}" />
+
+                        </StackPanel>
+                        <TextBlock Grid.Row="1" Grid.Column="2" Text="checksum: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <CheckBox x:Name="dobCRC" Grid.Row="1" Grid.Column="3" IsEnabled="False" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Validity period (yyMMdd): " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                            <TextBox x:Name="ValidityPeriodVIZ" TextChanged="ValidityPeriodVIZ_TextChanged"
+                                extensions:TextBoxRegex.Regex="^\d{2}(((0)[0-9])|((1)[0-2]))([0-2][0-9]|(3)[0-1])$" extensions:TextBoxRegex.ValidationMode="Forced"
+                                FontSize="20" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" MaxLength="100" Width="100" />
+                            <CheckBox Name="chkbxValidityPeriodVIZ" IsEnabled="False" Content="Is valid" IsChecked="{Binding (extensions:TextBoxRegex.IsValid),ElementName=ValidityPeriodVIZ}" />
+
+                        </StackPanel>
+                        <TextBlock Grid.Row="2" Grid.Column="2" Text="checksum: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <CheckBox x:Name="valPeriodCRC" Grid.Row="2" Grid.Column="3" IsEnabled="False" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+
+                        <TextBlock Text="Image taken for MRZ extraction: " Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" FontSize="20" VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        <Image x:Name="imgVIZ" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="4" Stretch="Uniform" />
+
+                        <ScrollViewer Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" HorizontalScrollBarVisibility="Visible">
+                            <ListBox Margin="10" Name="lstBoxMsg">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding}" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </ScrollViewer>
+
+                        <Button x:Name="btnDoOCR" Click="BtnDoOCR_Click" Grid.Row="9" Grid.Column="0" Content="Do OCR" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Button x:Name="btnDoRfid" IsEnabled="False" Click="BtnDoRfid_Click"  Grid.Row="9" Grid.Column="1" Content="Do RFID" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Button x:Name="btnDoPhotoAgain" Click="BtnDoPhotoAgain_Click" Grid.Row="9" Grid.Column="2" FontSize="20" Content="Make photo" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Button x:Name="btnDoCSCAUpdate" Click="BtnDoCSCAUpdate_Click" Grid.Row="9" Grid.Column="3" FontSize="20" Content="Update CSCA" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                    </Grid>
+                </PivotItem>
+                <PivotItem x:Uid="TabbedDetails_PivotItem2">
+
+                    <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Machine readable zone: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <TextBlock x:Name="tbxMrz" FontWeight="Bold" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="0" Grid.Column="3" Text="DG1 integrity: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <CheckBox x:Name="dg1CRC" Grid.Row="0" Grid.Column="4" IsEnabled="False" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Face image: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <Image x:Name="imgFace" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Grid.Column="3" Text="DG2 integrity: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <CheckBox x:Name="dg2CRC" Grid.Row="1" Grid.Column="4" IsEnabled="False" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Last name: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <TextBlock x:Name="lastName" FontWeight="Bold" Grid.Row="3" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="3" Grid.Column="3" Text="DG14 integrity: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <CheckBox x:Name="dg14CRC" Grid.Row="3" Grid.Column="4" IsEnabled="False" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="First name: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <TextBlock x:Name="firstName" FontWeight="Bold" Grid.Row="4" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="4" Grid.Column="3" Text="SOD integrity: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <CheckBox x:Name="SODIntegrity" Grid.Row="4" Grid.Column="4" IsEnabled="False" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Date of birth: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <TextBlock x:Name="dob" FontWeight="Bold" Grid.Row="5" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="5" Grid.Column="3" Text="CSCA trusted: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <CheckBox x:Name="CSCATrusted" Grid.Row="5" Grid.Column="4" IsEnabled="False" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+
+
+                        <TextBlock Grid.Row="6" Grid.Column="0" Text="Citizenship: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <TextBlock x:Name="citizenship" FontWeight="Bold" Grid.Row="6" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="6" Grid.Column="3" Text="CA status: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <CheckBox x:Name="CAStatus" Grid.Row="6" Grid.Column="4" IsEnabled="False" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+
+                        <TextBlock Grid.Row="7" Grid.Column="0" Text="Document number: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <TextBlock x:Name="docNumber" FontWeight="Bold" Grid.Row="7" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="7" Grid.Column="3" Text="JPEG2000: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <CheckBox x:Name="JPEG2000" Grid.Row="7" Grid.Column="4" IsEnabled="False" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+
+
+                        <TextBlock Grid.Row="8" Grid.Column="0" Text="Date of expiry: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <TextBlock x:Name="validityPeriod" FontWeight="Bold" Grid.Row="8" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="8" Grid.Column="3" Text="PACE used: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <CheckBox x:Name="IsPACE" Grid.Row="8" Grid.Column="4" IsEnabled="False" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+
+
+                        <TextBlock Grid.Row="9" Grid.Column="0" Text="Issuing country: " FontSize="20" HorizontalAlignment="Right"  VerticalAlignment="Center"/>
+                        <TextBlock x:Name="issuingCountry" FontWeight="Bold" Grid.Row="9" Grid.Column="1" FontSize="20" HorizontalAlignment="Left" Margin="10"  VerticalAlignment="Center" />
+
+
+                    </Grid>
+                </PivotItem>
+            </Pivot>
+            <controls:Loading x:Name="ctrlLoading" IsLoading="{Binding IsBusy}"  >
+                <controls:Loading.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.7" />
+                </controls:Loading.Background>
+                <StackPanel Orientation="Horizontal" Padding="12">
+                    <Grid Margin="0,0,8,0">
+                        <ProgressRing IsActive="True" Foreground="Blue" />
+                    </Grid>
+                    <TextBlock Text="Processing operation.." Foreground="Black" VerticalAlignment="Center" />
+                </StackPanel>
+            </controls:Loading>
+        </Grid>
+    <!--</ScrollViewer>-->
+</Page>

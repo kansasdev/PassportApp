@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Pass" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IPass_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1">
+        </msb:BinaryEncoding>
+        <wsaw:UsingAddressing>
+        </wsaw:UsingAddressing>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/PassportService" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IPass_ExtractMrzData_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtractMrzData" />
+  </wsdl:message>
+  <wsdl:message name="IPass_ExtractMrzData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtractMrzDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPass_ReadChip_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadChip" />
+  </wsdl:message>
+  <wsdl:message name="IPass_ReadChip_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadChipResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPass_CheckJavaPrerequisite_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckJavaPrerequisite" />
+  </wsdl:message>
+  <wsdl:message name="IPass_CheckJavaPrerequisite_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckJavaPrerequisiteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPass_CheckPythonPrerequisite_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckPythonPrerequisite" />
+  </wsdl:message>
+  <wsdl:message name="IPass_CheckPythonPrerequisite_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckPythonPrerequisiteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPass_InvokeMasterlistupdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:InvokeMasterlistupdate" />
+  </wsdl:message>
+  <wsdl:message name="IPass_InvokeMasterlistupdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InvokeMasterlistupdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPass_SessionOpened_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SessionOpened" />
+  </wsdl:message>
+  <wsdl:message name="IPass_SessionOpened_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SessionOpenedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPass_SessionFinished_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SessionFinished" />
+  </wsdl:message>
+  <wsdl:message name="IPass_SessionFinished_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SessionFinishedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPass_ErrorRaised_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ErrorRaised" />
+  </wsdl:message>
+  <wsdl:message name="IPass_ErrorRaised_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ErrorRaisedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPass_MrzFromChipTaken_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MrzFromChipTaken" />
+  </wsdl:message>
+  <wsdl:message name="IPass_MrzFromChipTaken_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MrzFromChipTakenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPass_ImageFromChipTaken_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ImageFromChipTaken" />
+  </wsdl:message>
+  <wsdl:message name="IPass_ImageFromChipTaken_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ImageFromChipTakenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPass_DocChecksPerformed_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:DocChecksPerformed" />
+  </wsdl:message>
+  <wsdl:message name="IPass_DocChecksPerformed_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:DocChecksPerformedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPass_ResultChip_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ResultChip" />
+  </wsdl:message>
+  <wsdl:message name="IPass_ResultChip_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ResultChipResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPass_CSCADownloaded_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:CSCADownloaded" />
+  </wsdl:message>
+  <wsdl:message name="IPass_CSCADownloaded_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:CSCADownloadedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPass_CSCAUnzipped_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:CSCAUnzipped" />
+  </wsdl:message>
+  <wsdl:message name="IPass_CSCAUnzipped_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:CSCAUnzippedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPass_CSCAParsed_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:CSCAParsed" />
+  </wsdl:message>
+  <wsdl:message name="IPass_CSCAParsed_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:CSCAParsedResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IPass">
+    <wsdl:operation name="ExtractMrzData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPass/ExtractMrzData" message="tns:IPass_ExtractMrzData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPass/ExtractMrzDataResponse" message="tns:IPass_ExtractMrzData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadChip">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPass/ReadChip" message="tns:IPass_ReadChip_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPass/ReadChipResponse" message="tns:IPass_ReadChip_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckJavaPrerequisite">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPass/CheckJavaPrerequisite" message="tns:IPass_CheckJavaPrerequisite_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPass/CheckJavaPrerequisiteResponse" message="tns:IPass_CheckJavaPrerequisite_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckPythonPrerequisite">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPass/CheckPythonPrerequisite" message="tns:IPass_CheckPythonPrerequisite_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPass/CheckPythonPrerequisiteResponse" message="tns:IPass_CheckPythonPrerequisite_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InvokeMasterlistupdate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPass/InvokeMasterlistupdate" message="tns:IPass_InvokeMasterlistupdate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPass/InvokeMasterlistupdateResponse" message="tns:IPass_InvokeMasterlistupdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SessionOpened">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPass/SessionOpened" message="tns:IPass_SessionOpened_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPass/SessionOpenedResponse" message="tns:IPass_SessionOpened_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SessionFinished">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPass/SessionFinished" message="tns:IPass_SessionFinished_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPass/SessionFinishedResponse" message="tns:IPass_SessionFinished_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ErrorRaised">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPass/ErrorRaised" message="tns:IPass_ErrorRaised_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPass/ErrorRaisedResponse" message="tns:IPass_ErrorRaised_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MrzFromChipTaken">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPass/MrzFromChipTaken" message="tns:IPass_MrzFromChipTaken_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPass/MrzFromChipTakenResponse" message="tns:IPass_MrzFromChipTaken_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImageFromChipTaken">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPass/ImageFromChipTaken" message="tns:IPass_ImageFromChipTaken_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPass/ImageFromChipTakenResponse" message="tns:IPass_ImageFromChipTaken_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DocChecksPerformed">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPass/DocChecksPerformed" message="tns:IPass_DocChecksPerformed_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPass/DocChecksPerformedResponse" message="tns:IPass_DocChecksPerformed_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResultChip">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPass/ResultChip" message="tns:IPass_ResultChip_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPass/ResultChipResponse" message="tns:IPass_ResultChip_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CSCADownloaded">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPass/CSCADownloaded" message="tns:IPass_CSCADownloaded_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPass/CSCADownloadedResponse" message="tns:IPass_CSCADownloaded_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CSCAUnzipped">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPass/CSCAUnzipped" message="tns:IPass_CSCAUnzipped_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPass/CSCAUnzippedResponse" message="tns:IPass_CSCAUnzipped_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CSCAParsed">
+      <wsdl:output wsaw:Action="http://tempuri.org/IPass/CSCAParsed" message="tns:IPass_CSCAParsed_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IPass/CSCAParsedResponse" message="tns:IPass_CSCAParsed_InputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IPass" type="tns:IPass">
+    <wsp:PolicyReference URI="#NetTcpBinding_IPass_policy">
+    </wsp:PolicyReference>
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="ExtractMrzData">
+      <soap12:operation soapAction="http://tempuri.org/IPass/ExtractMrzData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadChip">
+      <soap12:operation soapAction="http://tempuri.org/IPass/ReadChip" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckJavaPrerequisite">
+      <soap12:operation soapAction="http://tempuri.org/IPass/CheckJavaPrerequisite" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPythonPrerequisite">
+      <soap12:operation soapAction="http://tempuri.org/IPass/CheckPythonPrerequisite" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InvokeMasterlistupdate">
+      <soap12:operation soapAction="http://tempuri.org/IPass/InvokeMasterlistupdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SessionOpened">
+      <soap12:operation soapAction="http://tempuri.org/IPass/SessionOpened" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SessionFinished">
+      <soap12:operation soapAction="http://tempuri.org/IPass/SessionFinished" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ErrorRaised">
+      <soap12:operation soapAction="http://tempuri.org/IPass/ErrorRaised" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MrzFromChipTaken">
+      <soap12:operation soapAction="http://tempuri.org/IPass/MrzFromChipTaken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImageFromChipTaken">
+      <soap12:operation soapAction="http://tempuri.org/IPass/ImageFromChipTaken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocChecksPerformed">
+      <soap12:operation soapAction="http://tempuri.org/IPass/DocChecksPerformed" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResultChip">
+      <soap12:operation soapAction="http://tempuri.org/IPass/ResultChip" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CSCADownloaded">
+      <soap12:operation soapAction="http://tempuri.org/IPass/CSCADownloaded" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CSCAUnzipped">
+      <soap12:operation soapAction="http://tempuri.org/IPass/CSCAUnzipped" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CSCAParsed">
+      <soap12:operation soapAction="http://tempuri.org/IPass/CSCAParsed" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Pass">
+    <wsdl:port name="NetTcpBinding_IPass" binding="tns:NetTcpBinding_IPass">
+      <soap12:address location="net.tcp://localhost:8000/Passport/service" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8000/Passport/service</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
